@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>知行协同</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/case1.css"/>
+		<script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				投标管理
+			</header>
+			<article>
+				<section class="oneSection">
+					<p>投标人对招标邀请做出投标反应，这个过程是应标。通常应标工作分为四步：获取标书-标书制作-交付标书-投标。使用知行协同可以在组织应标、团队分工、计划等环节让整个应标工作秩序井井有条，帮助团队把更多精力放在制作标书的内容和质量上。</p>
+				</section>
+				<section>
+					<h4>Step1:创建项目并把项目分为四个阶段：获取标书、制作标书、交标（交付标书）、投标（如图1）</h4>
+					<figure><img src="img/case3-1.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>获取标书：在获取标书任务中通过计划记录关键工作点，并且可以在执行记录中记录执行结果。招标文件内容可以上传的文件中，在任务卡片上有文件的快捷入口，方便用户查看任务下的文件内容（如图2）。</h4>
+					<figure><img src="img/case3-2.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>制作标书：制作标示是应标过程中最复杂的一环，过程中需要多个人共同协作并输出大量文件。我们可以在任务下给每个协同人指派不同的计划，计划执行人可以周期性的记录执行结果（如图3），执行过程中的产出物可以在文件中进行管理（如图4）</h4>
+					<figure><img src="img/case3-3.png" alt=""></figure>
+					<figure><img src="img/case3-4.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>标书评审：标书提交之前，还需要经过多次评审，例如技术方案评审、商务报价评会等等，这个评审过程可以在文件中直接进行评论（如图5）。</h4>
+					<figure><img src="img/case3-5.png" alt=""></figure>
+				</section>
+			</article>
+		</div>
+		
+	</body>
+</html>

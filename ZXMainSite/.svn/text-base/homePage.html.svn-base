@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>知行协同</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<meta name="keywords" content="远光知行协同, 远光知行协同项目管理工具, 知行协同">
+		<meta name="description" content="固化管理、建立模式
+		  知行是有思想的管理平台。凝聚共识，组织有序
+		  项目是资源的聚集单元。分解目标、加强协同
+		  任务是目标的风控单元。统筹计划、明确路径
+		  计划是目标的驱动单元。过程透明、汇聚智慧
+		  执行是目标的承载单元">
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/homePage.css"/>
+		<script src="js/homeLunbo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cavas.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../commons/js/baiduSEO.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<section class="top">
+			<section class="topSection">
+				<div class="topLeft">
+					<img src="images/ygLogo.png"/>
+					<p>知行协同项目管理工具</p>
+				</div>
+				<div class="topRight">
+					<ul class="topRightUl">
+						<li class="topRightUlli"><a href="" class="active">首页</a></li>
+						<li class="topRightUlli litwo">
+							<a href="">案例项目</a>
+							<div class="solution-menu-wrap">
+					          <ul class="solution-menu">
+					            <li><a href="case/case1.html">案例一</a></li>
+					            <li><a href="case/case2.html">案例二</a></li>
+					            <li><a href="case/case3.html">投标管理</a></li>
+					          </ul>
+					        </div>
+						</li>
+						<li class="topRightUlli"><a href="">知行介绍</a></li>
+						<li class="topRightUlli"><a href="">其他产品</a></li>
+					</ul>
+				</div>
+			</section>
+			<img class="rightTopimg" src="images/rightTopimg.png"/>
+		</section>
+		<section class="center">
+			<section class="centerLeft" id="container">
+				<div id="list" style="left: -550px;">
+					<img src="images/2.png" alt="1">
+					<img src="images/1.png" alt="2">
+					<img src="images/2.png" alt="3">
+					<img src="images/1.png" alt="4">	
+				</div>
+				<div id="buttons">
+					<span index="1" class="on"></span>
+					<span index="2" class=""></span>
+				</div>
+				<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+				<a href="javascript:;" id="next" class="arrow">&gt;</a>
+			</section>
+			<section class="centerRight">
+				<img class="copywriting" src="images/copywriting.png"/>
+				<div class="rightBtm">
+					<div class="rightBtmBtn">
+						<button><a href="https://bj88.ygsoft.com/jsp/userLogin.jsp">立即体验网页版</a></button>
+						<button id="clientDown"><a href="https://bj88.ygsoft.com/xcxUpload/clientInstall/zhixing.exe">下载Windows版本</a></button>
+					</div>
+					<div class="">
+						<img src="images/weChatcode.png"/>
+					</div>
+				</div>
+			</section>
+		</section>
+		<section class="smallImg">
+			<i class="i01"></i>
+			<i class="i02"></i>
+			<i class="i03"></i>
+			<i class="i04"></i>
+			<i class="i05"></i>
+			<i class="i06"></i>
+			<i class="i07"></i>
+		</section>
+		<section class="footer">
+			<!--<img class="oneImg" src="images/footerBg1.png"/>
+			<img class="twoImg" src="images/footerBg2.png"/>
+			<img class="threeImg" src="images/footerBg3.png"/>-->
+			<canvas id="wave"></canvas>
+			<span>©&nbsp;远光软件(北京)有限公司&nbsp;责任所有</span>
+		</section>
+	</body>
+</html>
+	<script type="text/javascript">
+		$(function() {
+			function initAll() {
+				function SiriWave(opt) {
+					this.opt = opt || {};
+					this.K = 1;
+					this.F = 15;
+					this.speed = this.opt.speed || 0.1;
+					this.noise = this.opt.noise || 30;
+					this.phase = this.opt.phase || 0;
+					if(!window.devicePixelRatio) {
+						devicePixelRatio = 1
+					}
+					this.width = devicePixelRatio * (this.opt.width || 320);
+					this.height = devicePixelRatio * (this.opt.height || 100);
+					this.MAX = (this.height / 2) - 4;
+					this.canvas = $("#wave")[0];
+					this.canvas.width = this.width;
+					this.canvas.height = this.height;
+					this.canvas.style.width = (this.width / devicePixelRatio) + "px";
+					this.canvas.style.height = (this.height / devicePixelRatio) + "px";
+					this.ctx = this.canvas.getContext("2d");
+					this.run = false
+				}
+				SiriWave.prototype = {
+					_globalAttenuationFn: function(x) {
+						return Math.pow(this.K * 4 / (this.K * 4 + Math.pow(x, 4)), this.K * 2)
+					},
+					_drawLine: function(attenuation, color, width, noise, F) {
+						this.ctx.moveTo(0, 0);
+						this.ctx.beginPath();
+						this.ctx.strokeStyle = color;
+						this.ctx.lineWidth = width || 1;
+						var x, y;
+						F = F || this.F;
+						noise = noise * this.MAX || this.noise;
+						for(var i = -this.K; i <= this.K; i += 0.01) {
+							i = parseFloat(parseFloat(i).toFixed(2));
+							x = this.width * ((i + this.K) / (this.K * 2));
+							y = this.height / 2 + noise * Math.pow(Math.sin(i * 10 * attenuation), 1) * Math.sin(F * i - this.phase);
+							this.ctx.lineTo(x, y)
+						}
+						this.ctx.lineTo(this.width, this.height);
+						this.ctx.lineTo(0, this.height);
+						this.ctx.fillStyle = color;
+						this.ctx.fill()
+					},
+					_clear: function() {
+						this.ctx.globalCompositeOperation = "destination-out";
+						this.ctx.fillRect(0, 0, this.width, this.height);
+						this.ctx.globalCompositeOperation = "source-over"
+					},
+					_draw: function() {
+						if(!this.run) {
+							return
+						}
+						this.phase = (this.phase + this.speed) % (Math.PI * 64);
+						this._clear();
+						//this._drawLine(0.5, "rgba(120,255,212,0.5)", 1, 0.35, 6);84,181,252,1
+						this._drawLine(0.5, "rgba(182,225,255,1)", 1, 0.35, 6);
+						//this._drawLine(1, "rgba(0,188,62,0.5)", 1, 0.25, 6);182,225,255,1
+						this._drawLine(1, "rgba(84,181,252,1)", 1, 0.25, 6);
+						clearAnimationFrame = requestAnimationFrame(this._draw.bind(this), 1000)
+					},
+					start: function() {
+						this.phase = 0;
+						this.run = true;
+						this._draw()
+					},
+					stop: function() {
+						this.run = false;
+						this._clear()
+					},
+					setNoise: function(v) {
+						this.noise = Math.min(v, 1) * this.MAX
+					},
+					setSpeed: function(v) {
+						this.speed = v
+					},
+					set: function(noise, speed) {
+						this.setNoise(noise);
+						this.setSpeed(speed)
+					},
+					bl: function(val) {
+						return 1920 / 15
+					}
+				};
+				var SW = new SiriWave({
+					width: $(window).width(),
+					height: 200,
+					container: $(".wavewarp")[1]
+				});
+				SW.setSpeed(0.01);
+				SW.start();
+				//canvasSty();
+			}
+			initAll();
+			
+			
+			$(".litwo").hover(
+				function () {
+				    $(this).addClass("hover");
+				  },
+				  function () {
+				    $(this).removeClass("hover");
+				  }
+			)
+				
+			
+		});
+</script>

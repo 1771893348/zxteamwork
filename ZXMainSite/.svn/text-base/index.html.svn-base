@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>知行协同</title>
+		<meta name="keywords" content="远光知行协同, 远光知行协同项目管理工具, 知行协同">
+		<meta name="description" content="固化管理、建立模式
+		  知行是有思想的管理平台。凝聚共识，组织有序
+		  项目是资源的聚集单元。分解目标、加强协同
+		  任务是目标的风控单元。统筹计划、明确路径
+		  计划是目标的驱动单元。过程透明、汇聚智慧
+		  执行是目标的承载单元">
+	</head>
+
+	<body>
+		<canvas id="wave"></canvas>
+	</body>
+	<script type="text/javascript">
+		
+	</script>
+
+</html>

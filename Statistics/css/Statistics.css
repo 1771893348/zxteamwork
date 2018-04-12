@@ -1,0 +1,358 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+.body {
+ /* Margin bottom by footer height */
+ background-color: #f0f0f0;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  /*width: 100%;
+  max-width: 100%;*/
+  padding: 0 15px;
+}
+.TopTitle{
+	margin-top: 1rem!important;
+	font-size: 1.5rem;
+}
+.topLead{
+	font-size: 1.5rem;
+}
+:root {
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.colItem{
+	padding: 10px;
+	word-break: break-all;
+}
+
+.upBorder{
+	position: relative;
+	height: 50px;
+	min-width: 3rem;
+	/*border:1px dashed #d3deee;*/
+	border-top: 1px dashed #d3deee;
+	border-left: 1px dashed #d3deee;
+	flex: 1;
+}
+.upBorderKong{
+	position: relative;
+	height: 50px;
+	min-width: 3rem;
+	/*border:1px dashed #d3deee;*/
+	/*border-top: 1px dashed #d3deee;
+	border-left: 1px dashed #d3deee;*/
+	flex: 1;
+}
+
+.tableDouble{
+	position: relative;
+	margin: 0 auto;
+	max-height: 200px;
+	/*overflow-y: auto;*/
+	OVERFLOW-Y: auto; 
+	OVERFLOW-X:hidden;
+	width: fit-content;
+}
+.tableDivBj{
+	
+}
+.tableDiv{
+	position: absolute;
+	top: -4px;
+	left: 0;
+	width: 100%;
+  /*overflow-x: hidden;
+  width: fit-content;*/
+}
+.taskItemDiv{
+	margin: 0 auto;
+	/*max-width: 500px;*/.
+	OVERFLOW-Y: hidden;
+	overflow-x: auto;
+}
+.item{
+	border-top: 8px solid #4481EB;
+}
+.itemNo{
+	border-top: 8px solid #CADDFD;
+}
+.pointRecord{
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	left: -8px;
+	top: -12px;
+	border-radius: 50%;
+	z-index: 2;
+}
+.redCircle{
+	background: blue;
+}
+.greenCircle{
+	background: green;
+}
+.leftLine{
+	border-left: 1px solid #FA5C5C;
+}
+.circle{
+	/*border: 1px solid blue;
+	background: white;*/
+}
+
+.taskItem{
+	padding: 10px;
+	border-radius: 10px;
+	background: white;
+}
+.taskItemTop{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.DateFilter{
+	/*position: absolute;
+	top:0;
+	right: 0;*/
+	display: flex;
+	border-radius: 2px;
+	border: 1px solid #999999;
+}
+/*.DateFilter:first-child{
+	border-radius: 2px 0 0 2px;
+	border-left: 1px solid #999999;
+}
+.DateFilter:last-child{
+	border-radius: 0 2px 2px 0;
+	
+	border-right: 1px solid #999999;
+	
+}*/
+.Dateitem{
+	/*float: right;*/
+	/*border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;*/
+	margin: 0;
+	padding: 5px;
+}
+.taskName{
+
+}
+.taskTable{
+	background-color: #f1f5fe;
+	padding: 18px;
+}
+.taskTable p{
+	
+}
+.TagDiv{
+	display: flex;
+	justify-content: flex-end;
+	line-height: 32px;
+	align-items: center;
+}
+.TagWrite{
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: blue;
+	margin: 0;
+}
+.TagAll{
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: green;
+	margin:0 0 0 12px;
+}
+.taskDateDiv{
+	/*width: 100%;*/
+	display: flex;
+	justify-content: space-between;
+	border-top: 1px dashed #d3deee;
+	width: fit-content;
+  margin: 0 auto;
+}
+.Dateitem{
+}
+.DayItem{
+	flex: 1;
+	position: relative;
+	min-width: 3rem;
+}
+.planName{
+	position: absolute;
+  	left: 50%;
+	top: 10px;
+	z-index: 2;
+}
+.tableTR{
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+.todayIcon{
+	position: absolute;
+	top: -8px;
+  left: -8px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background-color: red;
+	z-index: 2;
+}
+
+/*dilog start*/
+.planDayDialog{
+	
+}
+.modal-content{
+	width: 80%;
+	max-width: 350px;
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
+	/*justify-content: center;
+	align-items: center;*/
+}
+.modalMain{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dialogTop{
+	background-image: url(../images/dialogTop.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size:100% 100%;
+	-moz-background-size:100% 100%;
+	height: 112px;
+	padding: 0 10px;
+	border-radius: 5px 5px 0 0;
+}
+.dialogTop p{
+	margin-top: 20px;
+}
+.dialogCenter{
+	flex: 1;
+}
+.recordWrite{
+	display: flex;
+	margin-top: 20px;
+	padding: 0 10px;
+}
+.recordUnWrite{
+	display: flex;
+	margin-top: 20px;
+	padding: 10px 10px;
+	/*border-top: 0.5px solid #999999;*/
+}
+.userItem{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 50px;
+	height: 22px;
+	border-radius: 11px;
+	background-color: #F1F6FE;
+	margin-left: 5px;
+}
+.userTitle{
+	width: 46px;
+}
+.userDiv{
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.planTitle{
+	margin-top: 20px;
+	padding: 0 20px;
+}
+.planTitle img{
+	width: 20px;
+	height: 20px;
+	margin-left: 5px;
+}
+.dialogButtons{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.btn-ok{
+	max-width: 200px;
+	width: 80%;
+	color: white;
+	background-color: #4481EB;
+	margin-bottom: 20px;
+}
+.btn-goPlan{
+	max-width: 200px;
+	width: 80%;
+	color: #4481EB;
+	background-color: transparent;
+	border: 1px solid #4481EB;
+	margin-bottom: 20px;
+}
+/*dialog end*/

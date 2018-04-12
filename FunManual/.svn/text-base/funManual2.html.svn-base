@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>知行协同发功能手册</title>
+		<meta name="keywords" content="远光知行协同, 远光知行协同项目管理工具, 知行协同">
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/funManual.css"/>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="../commons/js/baiduSEO.js" ></script>
+		<script type="text/javascript" src="js/funManual.js" ></script>
+	</head>
+	<body>
+		<!--主题页-->
+		<div class="" style="text-align: center;">
+			<!--<img class="ManualImg" src="images/funManual.png"/>-->
+			<p>知行协同用户手册</p>
+			<img style="height: 200px;width: 200px;" />
+			<p>写在前面的话</p>
+			<p>当今社会一切都是项目，一切也将成为项目。不管是日常工作还是茶余饭后，职场中谈论最多的事情也是各种项目。而项目管理就是</p>
+			<p>设计的一款项目管理工具，使用知行协同管理项目具备以下特点：</p>
+			<p> 1、明确项目目标并能跟踪目标完成情况
+				2、对于目标的管理能自上而下贯穿到基层
+				3、能促进员工的团队协作
+				4、明确关键业务目标
+				5、最终的工作结果可以衡量
+			</p>
+			<p>作为有过项目管理经验的公司员工，要主动和管理层沟通，阐明项目管理流程可以给公司带来的益处。因为成功的项目管理可以</p>
+			<p>功能简介</p>
+			<p>知行协同有四个功能模块：</p>
+			<p>
+				【知】- 我关注的项目在知行协同中用户可以关注自己感兴趣的项目，像在微博中关注名人、大V一样，通过关注项目可以发现优秀的团队、可靠的企业，【知】为用户提供了一个信息交换渠道，即可以推广项目，又可以寻找客户;
+			</p>
+			<p>版本：目前提供两个版本的应用，移动端的微信小程序和PC端的web应用程序。</p>
+			<div>
+				<div>
+					<li>*小程序码</li>
+					<img style="height: 200px;width: 200px;"/>
+				</div>
+				<div>
+					<li>*小程序码</li>
+					<a href="https://bj88.ygsoft.com/">https://bj88.ygsoft.com/</a>
+				</div>
+			</div>
+			<p>操作说明</p>
+			<div id="">
+				<div >
+					1
+				</div>
+				<p>【我】功能介绍</p>
+			</div>
+			<img src="../ZXMainSite/images/copywriting.png"/>
+			<p>
+				个人信息设置：用户昵称、头像、公司信息等内容在个人信息中进行设置;
+				项目统计：关注的项目数量和创建的项目数量展示了【知】和【行】里面的项目数量;
+				首页显示设置：在首页显示设置中用户可以设置【知】或【行】为默认首页；
+				pc端登陆地址：web版知行协同的访问地址；
+				邀请卡设置：用户可以修改邀请卡的背景图，通过微信添加好友时会发送邀请卡给微信好友。
+
+			</p>
+		</div>
+		<!--悬浮按钮-->
+		<div class="menuFloatDiv" onclick="showMenu()">
+			<img src="../ZXMainSite/images/ygLogo.png"/>
+		</div>
+		<!--悬浮弹框-->
+		<div class="menuMainDiv" id="menuMainDiv" onclick="showMenu()" style="visibility: hidden;">
+			<div class="menuDiv">
+				<div class="menuTitle" id="">
+					<img src="../ZXMainSite/images/ygLogo.png"/>
+					<div id="">
+						目录
+					</div>
+				</div>
+				<li class="treeZ"><a>功能介绍</a></li>
+				<li class="treeZ"><a>操作说明</a></li>
+				<li class="treeOne"><a>"我"功能介绍</a></li>
+				<li class="treeOne"><a>"圈"功能介绍</a></li>
+				<li class="treeOne"><a>"知"功能介绍</a></li>
+				<li class="treeOne">
+					<a>"行"功能介绍</a>
+					<li class="treeTwo">
+						<a>任务</a>
+						<li class="treeThree">
+							<a>计划</a>
+						</li>
+						<li class="treeThree">
+							<a>总结</a>
+						</li>
+					</li>
+					<li class="treeTwo"><a>动态</a></li>
+					<li class="treeTwo"><a>文件</a></li>
+					<li class="treeTwo"><a>交流</a></li>
+				</li>
+			</div>
+		</div>
+	</body>
+</html>

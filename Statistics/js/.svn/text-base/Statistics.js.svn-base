@@ -1,0 +1,363 @@
+
+function GetRequest() {
+		   var url = location.search; //获取url中"?"符后的字串   
+		   var theRequest = new Object();   
+		   if (url.indexOf("?") != -1) {   
+		      var str = url.substr(1);   
+		      strs = str.split("&");   
+		      for(var i = 0; i < strs.length; i ++) {   
+		         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+		      }   
+		   }   
+		   
+		   return theRequest;   
+	}
+function getProjectDetail(that){
+	    				var vm = that;
+	    				var param = JSON.stringify({ "eventId": that.$data.eventId, "userId": 296, "role": 2 });
+	    				console.log('wgw---getProjectDetail--',param)
+//	    				vm.$http.post('http://10.105.3.165/bj_xcx/xing/queryProjectInfo02.action',{jsonObj:param},{
+////	    					contentType: "application/text; charset=utf-8"
+//	    				}).then(res=>{
+//	    					console.log('wgw==succee=--',res)
+//	    				})
+
+//	    				http://10.105.3.71:8080/bj_xcx/xing/queryProjectInfo02.action
+//	    				Vue.http(
+//	    					{
+//		    					method:'POST',
+//								url:'https://bj88.ygsoft.com/xing/queryProjectInfo02.action',
+////								url:'http://10.105.3.165/bj_xcx/xing/queryProjectInfo02.action',
+//								data:{jsonObj:param},
+////								emulateJSON:true,
+//								Accept:'*/*',
+//								contentType: "application/json; charset=utf-8",
+//							}
+//	    				).then(function(res){
+//	    					console.log('wgw==succee=--',res)
+//	    				}).catch(function(res){
+//	    					console.log('wgw===-error-',res)
+//	    				});
+	    				
+	    				$.ajax({
+				          url: 'https://bj88.ygsoft.com/xing/queryProjectInfo02.action',
+				          type: 'POST',
+				          data:{jsonObj:param},
+				          success: function (res) {
+							console.log('wgw----',res)
+//				            self.data = res.result
+				          },
+				          fail:function(res){
+				          	console.log('wgw---fail-',res)
+				          }
+				        })
+	    			}
+
+				function turnTaskData(data){
+					var taskDate = data.x;
+					var taskData = data.y;
+					//有多少计划
+					var taskPlans = new Array();
+					for(var j=0;j<taskData[0].length;j++){
+						var plan = taskData[0][j];
+						var itemPlan = {};
+						itemPlan.id = 1;
+						itemPlan.planName = plan.planName;
+						itemPlan.planId = plan.id;
+						var items = new Array();
+						items.push({'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1});
+						for(var i=0;i<taskDate.length;i++){
+							var record = taskData[i][j];
+							var curDate = new Date();
+							var xM = new Date(taskDate[i]);
+							var planTime = new Date(record.planTime);
+							var startTime = new Date(record.startTime);
+							var recordState = -1;
+							if(record.execRecordStatus == 'FULL'){
+								recordState = 2;
+							}else if(record.execRecordStatus == 'SECTION'){
+								recordState = 1;
+							}else{
+								recordState = -1;
+							}
+							var isToday = -1;
+							if( curDate.getFullYear()==xM.getFullYear() && curDate.getDate()==xM.getDate()&&curDate.getMonth()==xM.getMonth()){
+								isToday = 0;
+							}
+							var dateEnd = -1;
+							
+							if(curDate>=startTime && curDate<=planTime || record.startTime.indexOf(taskDate[i])>0||record.planTime.indexOf(taskDate[i])>0){
+								dateEnd = 1;
+							}
+							var item = {'itemID':i,'value':'','dateEnd':dateEnd,'recordState':recordState,'isToday':isToday,'planItem':record};
+							items.push(item);
+//							{'id':1,'items':[
+//		    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':1,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':2,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':3,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':0},
+//		    							{'itemID':4,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':5,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':6,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//		    							{'itemID':7,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+//	    							
+//	    							],
+//	    							'planName':plan.planName,'planId':plan.id,
+//	    						}
+						}
+						itemPlan.items = items;
+//						console.log('wgw==========',itemPlan)
+						taskPlans.push(itemPlan);
+					}
+					return taskPlans;
+				}
+				function turnDate(res){
+					var curDate = new Date();
+					var taskDate = res.x;
+					var weekArray = new Array();
+					weekArray.push({'dateDay':0,'dateSelect':false,'isSHow':false,'isToday':-1});
+					for(var i=0;i<taskDate.length;i++){
+						
+						var xM = new Date(taskDate[i]);
+						var isToday = -1;
+//													var isSHow = false;
+						if( curDate.getFullYear()==xM.getFullYear() && curDate.getDate()==xM.getDate()&&curDate.getMonth()==xM.getMonth()){
+							isToday = 0;
+//														isSHow = true;
+						}
+						var item = {'dateDay':xM.getDate(),'dateSelect':false,'isSHow':true,'isToday':isToday};
+						weekArray.push(item);
+					}
+					return weekArray;
+				}
+				function getTaskDetail(that){
+					var param = { "stageId": 459, "userId": 3, "condition":"WEEK"};
+					$.ajax({
+				          url: 'http://10.105.3.165/bj_xcx/planAction/statistics.action',
+				          type: 'POST',
+				          dataType:'json',
+				          contentType:"application/json; charset=UTF-8",
+				          data:JSON.stringify({parameter:param}),
+				          success: function (res) {
+							console.log('wgw----',res)
+							if(res){
+								var grid = turnTaskData(res);
+//												console.log('wgw---grid-',grid);
+								that.$data.grid = that.$data.grid.concat(grid);
+
+								that.$data.weekArray = turnDate(res);
+//												console.log('wgw---that.$data.grid-',that.$data.grid)
+								getAllTask(that);
+							}
+							
+//				            self.data = res.result
+
+				          },
+				          fail:function(res){
+				          	console.log('wgw---fail-',res)
+				          }
+				        })
+				}
+				function getAllTask(that){
+//					taskArray:[
+//	    				{'taskName':'移动开发','dateSelect':false,'isSHow':false,'grid':'','weekArray':''},
+//	    				{'taskName':'小程序','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+//	    				{'taskName':'pc开发','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+//	    				{'taskName':'图片设计','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+//	    				
+//	    			]
+					var taskArray = new Array();
+					for(var i = 0 ;i<3;i++){
+						var taskItemContent = {};
+						taskItemContent.taskName = '移动开发';
+						taskItemContent.dateSelect = false;
+						taskItemContent.dateSelect = false;
+						taskItemContent.taskId = 101;
+						taskItemContent.grid = that.$data.grid;
+						taskItemContent.weekArray = that.$data.weekArray;
+						taskArray.push(taskItemContent);
+					}
+					that.$data.taskArray = taskArray;
+					
+					console.log('wgw=====-that.$data.taskArray----',that.$data.taskArray)
+					
+				}
+	var vm = new Vue({
+	    		el:'#el',
+	    		data:{
+	    			options:'',
+	    			eventId:0,
+	    			taskData:'',
+	    			tasksList:[
+	    				{'taskName':'全部任务','taskId':-1,'isSHow':false},
+	    				{'taskName':'执行v1.0.0','taskId':1,'isSHow':false},
+	    				{'taskName':'知行v2.0.0','taskId':11,'isSHow':false},
+	    				{'taskName':'电脑v3.0.0','taskId':111,'isSHow':false},
+	    			],
+	    			recordWrite:[
+	    				{'userName':'Dive','dateSelect':false,'isSHow':false},
+	    				{'userName':'Seven','dateSelect':false,'isSHow':false},
+	    				{'userName':'Fri','dateSelect':false,'isSHow':false},
+	    			],
+	    			recordUnWrite:[
+	    				{'userName':'wgw','dateSelect':false,'isSHow':false},
+	    				{'userName':'Lily','dateSelect':false,'isSHow':false},
+	    				{'userName':'Mary','dateSelect':false,'isSHow':false},
+	    				{'userName':'wgw','dateSelect':false,'isSHow':false},
+	    				{'userName':'Lily','dateSelect':false,'isSHow':false},
+	    				{'userName':'Mary','dateSelect':false,'isSHow':false},
+	    				{'userName':'wgw','dateSelect':false,'isSHow':false},
+	    				{'userName':'Lily','dateSelect':false,'isSHow':false},
+	    				{'userName':'Mary','dateSelect':false,'isSHow':false},
+	    			],
+	    			weekArray:[
+	    				{'dateDay':10,'dateSelect':false,'isSHow':false,'isToday':-1},
+	    				{'dateDay':10,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				{'dateDay':11,'dateSelect':false,'isSHow':true,'isToday':0},
+	    				{'dateDay':12,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				{'dateDay':13,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				{'dateDay':14,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				{'dateDay':15,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				{'dateDay':16,'dateSelect':false,'isSHow':true,'isToday':-1},
+	    				
+	    			],
+	    			taskArray:[
+	    				{'taskName':'移动开发','dateSelect':false,'isSHow':false,'grid':'','weekArray':''},
+	    				{'taskName':'小程序','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+	    				{'taskName':'pc开发','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+	    				{'taskName':'图片设计','dateSelect':false,'isSHow':true,'grid':'','weekArray':''},
+	    				
+	    			],
+	    			grid:[
+	    			{'id':1,'items':[
+	    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':1,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':2,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':3,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':0},
+	    							{'itemID':4,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':5,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':6,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':7,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							
+	    							],
+	    							'planName':'','planId':101,
+	    			},
+	    			{'id':2,'items':[
+	    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':8,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':9,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':10,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':0},
+	    							{'itemID':11,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':12,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':13,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':14,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							
+	    							],
+	    							'planName':'','planId':101,
+	    			},
+	    			{'id':3,'items':[
+	    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':8,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':9,'value':'dd','dateEnd':1,'recordState':-1,'isToday':-1},
+	    							{'itemID':10,'value':'dd','dateEnd':1,'recordState':1,'isToday':0},
+	    							{'itemID':11,'value':'dd','dateEnd':1,'recordState':2,'isToday':-1},
+	    							{'itemID':12,'value':'dd','dateEnd':1,'recordState':-1,'isToday':-1},
+	    							{'itemID':13,'value':'dd','dateEnd':2,'recordState':-1,'isToday':-1},
+	    							{'itemID':14,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							],
+	    							'planName':'知行协同V1.0','planId':101,
+	    			},
+	    			{'id':4,'items':[
+	    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':8,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':9,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':10,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':0},
+	    							{'itemID':11,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':12,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':13,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':14,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							],
+	    							'planName':'','planId':101,
+	    			},
+	    			{'id':5,'items':[
+	    							{'itemID':0,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':8,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':9,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':10,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':0},
+	    							{'itemID':11,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':12,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':13,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							{'itemID':14,'value':'dd','dateEnd':-1,'recordState':-1,'isToday':-1},
+	    							],
+	    							'planName':'','planId':101,
+	    			}
+	    			],
+	    			wgw:'sdddddddddddddddd',
+	    		},
+	    		beforeCreate:function(res){
+	    			
+	    		},
+	    		created:function(res){
+	    			var that = this;
+	    			that.$data.options = GetRequest();
+	    			if(that.$data.options.eventId){
+	    				that.$data.eventId = that.$data.options.eventId;
+	    			}
+	    			console.log('wgw====beforeCreate=',res,GetRequest())
+	    		},
+	    		mounted: function (res){
+	    			var that = this;
+//	    			getProjectDetail(that);
+	    			getTaskDetail(that);
+					
+	    		},
+	    		methods:{
+	    			change:function(){
+	    				vm.wgw="wifheiwhfhwoiehfoiwefkjdskjfkjdskj额分即可"
+	    			},
+	    			getProjectDetail:function(){
+	    				var vm = this;
+	    				var param = JSON.stringify({ "eventId": 255, "userId": 296, "role": 2 });
+//	    				vm.$http.post('http://10.105.3.71:8080/bj_xcx/xing/queryProjectInfo02.action',{jsonObj:param},{
+////	    					contentType: "application/text; charset=utf-8"
+//	    				}).then(res=>{
+//	    					console.log('wgw==succee=--',res)
+//	    				})
+
+//	    				http://10.105.3.71:8080/bj_xcx/xing/queryProjectInfo02.action
+	    				Vue.http(
+	    					{
+		    					method:'POST',
+								url:'https://bj88.ygsoft.com/xing/queryProjectInfo02.action',
+								data:{jsonObj:param},
+								emulateJSON:true,
+//								contentType: "application/json; charset=utf-8",
+							}
+	    				).then(function(res){
+	    					console.log('wgw==succee=--',res)
+	    				}).catch(function(res){
+	    					console.log('wgw===-error-',res)
+	    				});
+	    			},
+	    			BtnOk:function(){
+	    				 $('#myModal').modal('hide');
+	    			},
+	    			goPlan:function(){
+	    				$('#myModal').modal('hide');
+//	    				wx.miniProgram.navigateBack({
+//	    					
+//	    				})
+						var planId = 2753;
+						wx.miniProgram.navigateTo({
+							url:'/pages/TaskPlanBook/TaskPlan/planDetails/planDetails?planId='+planId+'&webto=true'
+						})
+	    		},
+	    		selectOnchang:function(that){
+	    			console.log('wgw=-==-=--=',that)
+	    		},
+	    		selectedTask:function(res){
+	    			console.log('wgw=---=-=-selectedTask=-==-=-',res)
+	    		}
+	    		}
+	    	})
+//	    	vm.getProjectDetail();

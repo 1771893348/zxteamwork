@@ -1,0 +1,74 @@
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Segoe UI","Helvetica Neue","PingFang SC","Noto Sans","Noto Sans CJK SC","Microsoft YaHei","微软雅黑",sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #383838;
+    background-color: #fff;
+}
+img {
+    vertical-align: middle;
+}
+@media (min-width: 1200px){
+	.container {
+	    width: 1172px;
+	}
+}
+@media (min-width: 992px){
+	.container {
+	    width: 972px;
+	}
+}
+lib.93a3654f.css:1
+
+@media (min-width: 768px){
+	.container {
+	    width: 100%;
+	}
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+header{
+	font-size: 26px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 900;
+}
+section:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #ededed;
+    margin: 40px 0;
+}
+section p{
+	font-size: 16px;
+    line-height: 1.57;
+    color: gray;
+        font-weight: 400;
+}
+section h4{
+	font-size: 16px;
+	margin-bottom: 16px;
+	color: #383838;
+	font-weight: 400;
+}
+figure img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+section ul{
+	list-style: inside;
+}
+section ul li{
+	font-size: 16px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>知行协同</title>
+		<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/case1.css"/>
+		<script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				《知行协同》项目管理工具使用案例二
+			</header>
+			<article>
+				<section class="oneSection">
+					<p>XXX公司商务管理</p>
+				</section>
+				<section>
+					<h4>Step1：业绩管理人员创建《XXX公司商务管理项目》，负责人为业绩管理人员，周期为本年度，将公司管理层作为关注人，以便他们随时了解业绩情况（如图一）。</h4>
+					<figure><img src="img/case2-1.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>Step2：以营销机构为任务单元分解业绩，任务负责人为营销机构负责人，任务预计工作量为业绩指标，任务协同人为营销机构销售人员（如图二）。</h4>
+					<figure><img src="img/case2-2.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>Step3：销售人员将签定的合同内容输入计划中，合同回款以计划的执行记录进行登记（如图三），并将合同文本上传到文件中（如图四），在总结中更改完成业绩数以标记完成进度，同时可要求每个销售人员按月或周在总结中写营销总结与分析（如图五）。</h4>
+					<figure><img src="img/case2-3.png" alt=""></figure>
+					<figure><img src="img/case2-4.png" alt=""></figure>
+					<figure><img src="img/case2-5.png" alt=""></figure>
+				</section>
+				<section>
+					<h4>系统价值</h4>
+					<ul>
+						<li>公司管理层可随时了业绩完成进度，在文件中查看合同内容，在总结中了解销售人员工作情况。</li>
+						<li>业绩是公司管理的核心，是公司各项工作协同的目标，商务管理的信息共享是建立业绩驱动的基础</li>
+					</ul>
+				</section>
+			</article>
+		</div>
+		
+	</body>
+</html>

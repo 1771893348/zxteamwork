@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title>执行工作平台</title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="../commons/js/baiduSEO.js" ></script>
+		<script type="text/javascript" src="js/Statistical.js" ></script>
+		<link rel="stylesheet" type="text/css" href="css/Statistical.css"/>
+		<style type="text/css">
+			.floatDiv{
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.TD{
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="" cellspacing="" cellpadding="">
+			<tr><th>Header</th></tr>
+			<tr class="TD">
+				<td >Data
+					<div class="floatDiv">
+						dfdsfdsfg
+					</div>
+				</td>
+				<td >Data
+					
+				</td>
+				<td >Data
+					
+				</td>
+				<td >Data
+					
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

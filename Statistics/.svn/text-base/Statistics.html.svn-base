@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title>统计平台</title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="../commons/js/baiduSEO.js" ></script>
+		
+		<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+		<!--<script src="../dist/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<link rel="stylesheet" href="../dist/bootstrap/css/bootstrap-select.css">
+		<script type="text/javascript" src="../dist/vue/vue.min.js" ></script>
+		<script src="../dist/vue/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dist/vue/vue-resource.js"></script>
+		
+		
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+		<!--<link rel="stylesheet" href="../dist/bootstrap/css/bootstrap.min.css" />-->
+		<script src="../dist/bootstrap/js/bootstrap-select.js" defer></script>
+		<link rel="stylesheet" type="text/css" href="css/Statistics.css"/>
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js" defer></script>
+		
+	</head>
+	<body class="body">
+		<div id="el">
+			
+		 <!-- Begin page content -->
+	    <main role="main" class="container">
+	      <h1 class="mt-5 TopTitle">计划执行记录填写情况统计表</h1>
+	      <p class="topLead">注：该统计表为当前项目各任务中计划执行记录填写情况的统计，
+可针对性切换任务查看，其中无人填写执行记录时无标记，有人
+填写时用蓝点标记，全部填写时用绿点标记。</p>
+	      <form class="form-horizontal" role="form">
+		    <div class="form-group">
+		      <label for="basic" class="col-lg-2 control-label">{{options.eventId}}</label>
+		
+		      <div class="col-lg-10">
+		        <select id="basic" class="selectpicker show-tick form-control" data-live-search="true" @change="selectOnchang($event)" data-wgw = "ddddddd">
+		        	<template v-for="task in tasksList">
+		        		<option v-on:click="selectedTask('0000')">{{task.taskName}}</option>
+		        	</template>
+		          
+		          <!--<option data-subtext="option subtext">bull</option>
+		          <option class="get-class" disabled>ox</option>-->
+		          
+		        </select>
+		      </div>
+		    </div>
+		  </form>
+	      <div class="row">
+	      	<template v-for="task in taskArray">
+		      	<div class="col-sm-4 colItem" >
+		      		<div class="taskItem">
+		      			<div class="taskItemTop">
+		      				<p class="taskName">{{task.taskName}}</p>
+		      				<div class="DateFilter">
+		      					<p class="Dateitem">今天</p>
+		      					<p class="Dateitem" style="border-left: 1px solid #999999;border-right: 1px solid #999999;">本周</p>
+		      					<p class="Dateitem">本月</p>
+		      				</div>
+		      			</div>
+		      			<div class="taskTable">
+		      				<div class="TagDiv">
+		      					<p class="TagWrite"></p>填写
+		      					<p class="TagAll"></p>全填写
+		      				</div>
+		      				<div class="taskItemDiv">
+								<div class="tableDouble">
+									<div class="tableDivBj" width="100%" cellspacing="2">
+								        <div class="tableTR" v-for="row in task.grid">
+										  <!--<div class="planName" v-show="row.planName">
+										  	{{ row.planName }}
+										  </div>-->
+			
+								          
+								          <div id="" v-for="item in row.items"
+								            :class="{upBorder:true,leftLine:item.isToday==0}">
+								            <!--{{ item.value }}-->
+								            <!--<a data-toggle="modal" data-target=".planDayDialog" v-bind:class="{pointRecord:true,circle:item.recordState==0,redCircle:item.recordState==1,greenCircle:item.recordState==2}" v-show="item.recordState!=-1"></a>-->
+								          </div>
+								        </div>
+							        
+							    	</div>
+							    	<div class="tableDiv" width="100%" cellspacing="2">
+								        <div class="tableTR" v-for="row in grid">
+										  <div class="planName" v-show="row.planName">
+										  	{{ row.planName }}
+										  </div>
+			
+								          
+								          <div id="" v-for="item in row.items"
+								            v-bind:class="{upBorderKong:true,item:(item.dateEnd==1),itemNo:(item.dateEnd==2)}">
+								            <!--{{ item.value }}-->
+								            <a data-toggle="modal" data-target=".planDayDialog" v-bind:class="{pointRecord:true,circle:item.recordState==0,redCircle:item.recordState==1,greenCircle:item.recordState==2}" v-show="item.recordState!=-1"></a>
+								          </div>
+								        </div>
+							        
+							    	</div>
+								</div>
+			      				
+							    <div class="taskDateDiv">
+				      				<div class="DayItem"  v-for="we in task.weekArray">
+				      					<a v-show="we.isToday==0" class="todayIcon"></a>
+								        <a  v-if="we.isSHow">{{we.dateDay}}</a>
+								    </div>
+			      				</div>
+		      				</div>
+		      			</div>
+		      			
+		      		</div>
+		      		
+		      	</div>
+	      	</template>
+	      </div>
+	    </main>
+		
+	    <!--<footer class="footer" v-show="false">
+	      <div class="container">
+	        <span class="text-muted">Place sticky footer content here.</span>
+	      </div>
+	    </footer>-->
+	    
+	    <div class="modal fade planDayDialog" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	    	<div class="modal-dialog modal-lg modalMain" role="document">
+			    <div class="modal-content">
+			    	<div class="dialogTop">
+			    		<p>客户现场反馈问题调试解决方案...</p>
+			    	</div>
+			    	<div class="dialogCenter">
+			    		<div class="planTitle">
+			    			<img src="images/dialogUserIcon.png"/>张三
+			    			<img src="images/dialogDateIcon.png"/>2018.03.05 ~ 2018.03.08
+			    		</div>
+			    		<div class="recordWrite">
+			    			<div class="userTitle">
+			    				已填写
+			    			</div>
+			    			<div class="userDiv">
+			    				<template v-for="user in recordWrite">
+			    					 <label class="userItem">{{user.userName}}</label>
+			    				</template>
+			    			</div>
+			    		</div>
+			    		<div class="recordUnWrite">
+			    			<div class="userTitle">
+			    				未填写
+			    			</div>
+			    			<div class="userDiv">
+			    				<template v-for="user in recordUnWrite">
+			    					 <label class="userItem">{{user.userName}}</label>
+			    				</template>
+			    			</div>
+			    		</div>
+			    	</div>
+			    	<div class="dialogButtons">
+			    		<button class="btn-ok" @click="BtnOk">确定</button>
+			    		<button class="btn-goPlan" @click="goPlan">查看计划</button>
+			    	</div>
+		    	</div>
+		  </div>
+	    </div>
+	    
+		</div>
+
+	    <script type="text/javascript">
+	    	function selectOnchang(that){
+	    		console.log('wgw---------',that.selectedIndex)
+	    	}
+//	    	  document.addEventListener('DOMContentLoaded', function () {
+//				    var mySelect = $('#first-disabled2');
+//				
+//				    $('#special').on('click', function () {
+//				      mySelect.find('option:selected').prop('disabled', true);
+//				      mySelect.selectpicker('refresh');
+//				    });
+//				
+//				    $('#special2').on('click', function () {
+//				      mySelect.find('option:disabled').prop('disabled', false);
+//				      mySelect.selectpicker('refresh');
+//				    });
+//				
+//				    $('#basic2').selectpicker({
+//				      liveSearch: true,
+//				      maxOptions: 1
+//				   	 });
+//				  });
+	    	
+	    </script>
+	    <script type="text/javascript" src="js/Statistics.js"></script>
+	</body>  
+</html>

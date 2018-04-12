@@ -1,0 +1,111 @@
+*{
+	list-style: none;
+}
+.ManualImg{
+	width: 100%;
+}
+
+.menuFloatDiv{
+	position: fixed; 
+	z-index: 6;
+	bottom: 5%;
+    right: 5%;
+    background-color: #DBDBDB;
+    border-radius: 50%;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuFloatDiv img{
+	width: 20px;
+    height: 12px;
+    margin-bottom: 5px;
+}
+.menuMainDiv{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,.4);
+	display: flex;
+	justify-content: flex-end;
+}
+
+#funTopIcom img{
+	/*width: 80vw;
+	height: 80vw;*/
+	margin-left: auto;
+	margin-right: auto;
+	height: auto;
+	max-width: 100%;
+}
+
+.menuDiv{
+	height: 100%;
+	max-width: 70%;
+	background-color: white;
+	overflow-y: auto;
+	
+}
+.menuList{
+	padding-left: 20px;
+	padding-right: 20px;
+	display: list-item;
+}
+/*.menuDiv a{
+	color: black;
+	font-size: 6vw;
+}*/
+.menuTitle{
+	display: flex;
+	border-bottom: 1px solid #C2C2C2 ;
+	padding: 8px 20px;
+	align-items: center;
+}
+.menuTitle img{
+	width: 20px;
+	height: 16px;
+	
+}
+.treeZ{
+	font-size: 1.8em;
+	/*font-weight: 600;*/
+}
+.treeOne{
+	padding-left: 20px;
+	font-size: 1.7em;
+	/*font-weight: 500;*/
+}
+.treeTwo{
+	padding-left: 61px;
+    font-size: 1.5em;
+	/*font-weight: 400;*/
+}
+
+.treeThree{
+	/*font-weight: 300;*/
+	padding-left: 80px;
+	font-size: 1.4em;
+}
+
+.mainDiv img{
+	width: 100%;
+}
+
+#topTitle{
+	font-size: 2em;
+	text-align: left;
+	padding-left: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+a:hover{
+	color: blue;
+}
